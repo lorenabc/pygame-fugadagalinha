@@ -1,5 +1,5 @@
 # ===== Inicialização =====
-#aaa
+
 import pygame
 import random
 
@@ -44,3 +44,4 @@ def load_assets():
     assets['som_fim'] = pygame.mixer.Sound('assets/sons/fatality.mp3')
 
     return assets
+
