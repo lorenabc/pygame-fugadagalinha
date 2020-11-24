@@ -73,3 +73,30 @@ class Galinha(pygame.sprite.Sprite):
             self.som.play()
             self.rect.bottom = HEIGHT
             self.pontos += 1
+
+class Carro(pygame.sprite.Sprite):
+    def __init__(self, img, y, direcao):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.centery = y
+        self.direcao = direcao
+        if self.direcao == 'mao':
+            self.rect.x = WIDTH + 100
+            self.speedx = random.randint(-20, -8)
+        if self.direcao == 'contramao':
+            self.rect.x = -100
+            self.speedx = random.randint(8, 20)
+
+    def update(self):
+        # Atualizando a posição do carro
+        self.rect.x += self.speedx
+
+        # Se o carro passar do final da tela, volta para trás
+        if self.rect.right < -20 and self.direcao == 'mao':
+            self.rect.x = WIDTH + 100
+        if self.rect.left > WIDTH + 20 and self.direcao == 'contramao':
+            self.rect.x = -100
