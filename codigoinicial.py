@@ -45,3 +45,31 @@ def load_assets():
 
     return assets
 
+# ----- Inicia as sprites
+class Galinha(pygame.sprite.Sprite):
+    def _init_(self, assets):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite._init_(self)
+
+        self.pontos = 0
+        self.image = assets['galinha_img']
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH / 3
+        self.rect.bottom = HEIGHT
+        self.speedy = 0
+        self.som = assets['som_ponto']
+
+    def update(self):
+        # Atualização da posição da galinha
+        self.rect.y += self.speedy
+
+        # Mantem dentro da tela
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+
+        # Se pontua volta para o inicio
+        if self.rect.top < 5:
+            self.som.play()
+            self.rect.bottom = HEIGHT
+            self.pontos += 1
