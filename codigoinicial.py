@@ -1,5 +1,5 @@
 # ===== Inicialização =====
-
+#aaa
 import pygame
 import random
 
