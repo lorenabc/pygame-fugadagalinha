@@ -3,7 +3,7 @@
 import pygame
 import random
 from assets import load_assets
-from classes import GalinhaPlayer,Carro
+from classes import GalinhaPlayer, Carro
 from constantes import HEIGHT, JOGANDO, ACABANDO, ACABADO, INICIANDO, FPS, AMARELO_CLARO, BORDO, PRETO
 
 #Criando uma função que gera a tela do jogo
@@ -30,7 +30,7 @@ def game_screen(window):
             all_cars = pygame.sprite.Group()
 
             # Criando o jogador
-            player = GalinhaPlayer(assets)
+            player = GalinhaPlayer(assets['galinha_img'], assets['som_ponto'])
             all_sprites.add(player)
 
             # Criando os carros
@@ -57,7 +57,8 @@ def game_screen(window):
                 carro = Carro(imagem, posicoes_y[i], direcao)
                 all_sprites.add(carro)
                 all_cars.add(carro)
-                           #jogador inicia o jogo com 3 vidas
+
+            #jogador inicia o jogo com 3 vidas
             vidas = 3
 
             #muda o estado do jogo para jogando ao final do estado iniciando
@@ -101,8 +102,8 @@ def game_screen(window):
                         state = INICIANDO
                     if event.key == pygame.K_RETURN:
                         return -1
-      
-       #Verifica colisão do jogador com carros e aplica as consequências
+
+        #Verifica colisão do jogador com carros e aplica as consequências
         if state == JOGANDO:
             hits = pygame.sprite.spritecollide(player, all_cars, False, pygame.sprite.collide_mask)
             if len(hits) > 0:
