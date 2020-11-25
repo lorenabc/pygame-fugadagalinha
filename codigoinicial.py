@@ -115,3 +115,20 @@ def game_screen(window):
     # Criando o jogador
     player = Galinha(assets)
     all_sprites.add(player)
+
+    # Criando os carros
+    carros_img_mao = [assets['carro1_mao'], assets['carro2_mao'], assets['carro3_mao'], assets['carro4_mao']]
+    carros_img_contramao = [assets['carro1_contramao'], assets['carro2_contramao'], assets['carro3_contramao'], assets['carro4_contramao']]
+    posicoes_y = [53, 102, 155, 237, 285, 337]
+    direcoes = ['mao', 'mao', 'mao', 'contramao', 'contramao', 'contramao']
+
+    for i, direcao in enumerate(direcoes):
+        cor = random.randint(0, 3)
+        imagem = None
+        if direcao == 'mao':
+            imagem = carros_img_mao[cor]
+        if direcao == 'contramao':
+            imagem = carros_img_contramao[cor]
+        carro = Carro(imagem, posicoes_y[i], direcao)
+        all_sprites.add(carro)
+        all_cars.add(carro)
