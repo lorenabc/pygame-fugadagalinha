@@ -3,7 +3,7 @@
 import pygame
 import random
 from assets import load_assets
-from classes import GalinhaPlayer, Carro
+from classes import GalinhaPlayer,Carro
 from constantes import HEIGHT, JOGANDO, ACABANDO, ACABADO, INICIANDO, FPS, AMARELO_CLARO, BORDO, PRETO
 
 #Criando uma função que gera a tela do jogo
