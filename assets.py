@@ -11,3 +11,7 @@ def load_assets():
     assets['background_inicio'] = pygame.image.load('assets/background_inicio.png').convert()
     assets['galinha_img'] = pygame.image.load('assets/galinha.png').convert_alpha()
     assets['galinha_img'] = pygame.transform.scale(assets['galinha_img'], (WIDTH_GALINHA, HEIGHT_GALINHA))
+    carro1_mao = pygame.image.load('assets/carros/carro1_mao.png').convert_alpha()
+    carro2_mao = pygame.image.load('assets/carros/carro2_mao.png').convert_alpha()
+    carro3_mao = pygame.image.load('assets/carros/carro3_mao.png').convert_alpha()
+    carro4_mao = pygame.image.load('assets/carros/carro4_mao.png').convert_alpha()
