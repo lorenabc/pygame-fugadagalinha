@@ -1,5 +1,5 @@
 # ===== Inicialização =====
-
+# ----- Importa e inicia pacotes
 import pygame
 import random
 
@@ -10,6 +10,7 @@ WIDTH = 500
 HEIGHT = 400
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Galinha')
+
 
 # ----- Função que carrega os assets
 def load_assets():
@@ -45,11 +46,12 @@ def load_assets():
 
     return assets
 
+
 # ----- Inicia as sprites
 class Galinha(pygame.sprite.Sprite):
-    def _init_(self, assets):
+    def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
-        pygame.sprite.Sprite._init_(self)
+        pygame.sprite.Sprite.__init__(self)
 
         self.pontos = 0
         self.image = assets['galinha_img']
@@ -73,6 +75,7 @@ class Galinha(pygame.sprite.Sprite):
             self.som.play()
             self.rect.bottom = HEIGHT
             self.pontos += 1
+
 
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img, y, direcao):
@@ -100,7 +103,7 @@ class Carro(pygame.sprite.Sprite):
             self.rect.x = WIDTH + 100
         if self.rect.left > WIDTH + 20 and self.direcao == 'contramao':
             self.rect.x = -100
-            
+
 def game_screen(window):
     assets = load_assets()
 
@@ -115,6 +118,7 @@ def game_screen(window):
     # Criando o jogador
     player = Galinha(assets)
     all_sprites.add(player)
+
 
     # Criando os carros
     carros_img_mao = [assets['carro1_mao'], assets['carro2_mao'], assets['carro3_mao'], assets['carro4_mao']]
@@ -147,7 +151,6 @@ def game_screen(window):
         ponto = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (0, 255, 255))
         ponto_gameover = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (255, 0, 0))
         game_over = assets['font_gameover'].render('GAME OVER', True, (255, 0, 0))
-
         # ----- Trata eventos
         for event in pygame.event.get():
             # ----- Verifica consequências
@@ -168,7 +171,7 @@ def game_screen(window):
                         player.speedy += 6
                     if event.key == pygame.K_DOWN:
                         player.speedy -= 6
-       
+
         all_sprites.update()
         if state == JOGANDO:
             hits = pygame.sprite.spritecollide(player, all_cars, False, pygame.sprite.collide_mask)
@@ -182,7 +185,8 @@ def game_screen(window):
         elif state == ACABANDO:
             for i in all_sprites:
                 i.kill()
-        
+
+
         # ----- Gera saídas
         window.fill((0, 0, 0))
         window.blit(assets['background'], (0, 0))
@@ -196,6 +200,7 @@ def game_screen(window):
             assets['som_fim'].play()
             if now - morreu > 5000:
                 state = ACABADO
+
 
         text_surface = assets['font_pontos'].render(chr(9829) * vidas, True, (255, 0, 0))
         text_rect = text_surface.get_rect()
