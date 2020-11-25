@@ -196,3 +196,17 @@ def game_screen(window):
             assets['som_fim'].play()
             if now - morreu > 5000:
                 state = ACABADO
+
+        text_surface = assets['font_pontos'].render(chr(9829) * vidas, True, (255, 0, 0))
+        text_rect = text_surface.get_rect()
+        text_rect.bottomleft = (10, HEIGHT - 10)
+        window.blit(text_surface, text_rect)
+
+        all_sprites.draw(window)
+
+        # ----- Atualiza estado do jogo
+        pygame.display.update()  # Mostra o novo frame para o jogador
+
+game_screen(window)
+# ===== Finalização =====
+pygame.quit()
