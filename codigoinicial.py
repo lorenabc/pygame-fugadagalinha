@@ -168,3 +168,17 @@ def game_screen(window):
                         player.speedy += 6
                     if event.key == pygame.K_DOWN:
                         player.speedy -= 6
+       
+        all_sprites.update()
+        if state == JOGANDO:
+            hits = pygame.sprite.spritecollide(player, all_cars, False, pygame.sprite.collide_mask)
+            if len(hits) > 0:
+                assets['som_batida'].play()
+                player.rect.bottom = HEIGHT
+                vidas -= 1
+                if vidas == 0:
+                    state = ACABANDO
+                    morreu = pygame.time.get_ticks()
+        elif state == ACABANDO:
+            for i in all_sprites:
+                i.kill()
