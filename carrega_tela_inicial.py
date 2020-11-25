@@ -57,3 +57,48 @@ def init_screen(window):
         all_sprites.draw(window)
         # ----- Atualiza estado do jogo
         pygame.display.update()
+
+           #jogador inicia o jogo com 3 vidas
+            vidas = 3
+
+            #muda o estado do jogo para jogando ao final do estado iniciando
+            state = JOGANDO
+
+        #Ajusta a velocidade para o número de FPS
+        clock.tick(FPS)
+
+        #carrega as fontes
+        ponto = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, AMARELO_CLARO)
+        ponto_gameover = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, BORDO)
+        texto_gameover1 = assets['font_gameover_texto'].render('Aperte ESPAÇO para reiniciar o jogo', True, BORDO)
+        texto_gameover2 = assets['font_gameover_texto'].render('Aperte ENTER para sair do jogo', True, BORDO)
+        game_over = assets['font_gameover'].render('GAME OVER', True, BORDO)
+
+
+        # ----- Trata eventos
+        for event in pygame.event.get():
+            # ----- Verifica consequências
+            if event.type == pygame.QUIT:
+                return -1
+            if state == JOGANDO:
+                # Verifica se apertou alguma tecla.
+                if event.type == pygame.KEYDOWN:
+                    # Dependendo da tecla, altera a velocidade.
+                    if event.key == pygame.K_UP:
+                        player.speedy -= 6
+                    if event.key == pygame.K_DOWN:
+                        player.speedy += 6
+                # Verifica se soltou alguma tecla.
+                if event.type == pygame.KEYUP:
+                    # Dependendo da tecla, altera a velocidade.
+                    if event.key == pygame.K_UP:
+                        player.speedy += 6
+                    if event.key == pygame.K_DOWN:
+                        player.speedy -= 6
+            if state == ACABANDO:
+                #Dependendo da tecla que o jogador apertar o jogo termina ou recomeça
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        state = INICIANDO
+                    if event.key == pygame.K_RETURN:
+                        return -1
