@@ -73,7 +73,7 @@ class Carro(pygame.sprite.Sprite):
         if self.direcao == 'contramao':
             self.rect.x += self.speedx + pontos * 2
 
-        # Se o carro passar do final da tela, volta para trás
+        # Se o carro passar do final da tela, volta para trás.S
         if self.rect.right < -20 and self.direcao == 'mao':
             self.rect.x = WIDTH + 100
         if self.rect.left > WIDTH + 20 and self.direcao == 'contramao':
