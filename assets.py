@@ -28,3 +28,10 @@ def load_assets():
     assets['carro2_contramao'] = pygame.transform.scale(carro2_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
     assets['carro3_contramao'] = pygame.transform.scale(carro3_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
     assets['carro4_contramao'] = pygame.transform.scale(carro4_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
+
+    assets['som_ponto'] = pygame.mixer.Sound('assets/sons/ponto.mpeg')
+    assets['som_batida'] = pygame.mixer.Sound('assets/sons/batida.mpeg')
+    assets['som_fim'] = pygame.mixer.Sound('assets/sons/ko.mp3')
+    assets['som_start'] = pygame.mixer.Sound('assets/sons/start.wav')
+
+    return assets
