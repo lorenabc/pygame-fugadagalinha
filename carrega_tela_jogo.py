@@ -101,3 +101,57 @@ def game_screen(window):
                         state = INICIANDO
                     if event.key == pygame.K_RETURN:
                         return -1
+      
+       #Verifica colisão do jogador com carros e aplica as consequências
+        if state == JOGANDO:
+            hits = pygame.sprite.spritecollide(player, all_cars, False, pygame.sprite.collide_mask)
+            if len(hits) > 0:
+                #Toca o som da batida e reposiciona o jogador na posição inicial
+                assets['som_batida'].play()
+                player.rect.bottom = HEIGHT
+                #perde a vida
+                vidas -= 1
+                #muda estado do jogo se as vidas acabaram
+                if vidas == 0:
+                    state = ACABANDO
+                    assets['som_fim'].play()
+
+        #Mata as sprites se as vidas acabam
+        elif state == ACABANDO:
+            player.kill()
+            for i in all_cars:
+                i.kill()
+
+        #Se o jogador ainda tem vidas atualiza as posições das sprites
+        if state == JOGANDO:
+            player.update()
+            all_cars.update(player.pontos)
+
+        # ----- Gera saídas
+        #Preenche a tela com o background
+        if state == JOGANDO:
+            window.fill(PRETO)
+            window.blit(assets['background'], (0, 0))
+            window.blit(ponto, (310, 4))
+
+            #Preenche a tela com os corações
+            text_surface = assets['font_pontos'].render(chr(9829) * vidas, True, BORDO)
+            text_rect = text_surface.get_rect()
+            text_rect.bottomleft = (10, HEIGHT - 10)
+            window.blit(text_surface, text_rect)
+
+        #Se as vidas acabaram preenche a tela com a tela de game over
+        if state == ACABANDO:
+            window.fill(PRETO)
+            window.blit(game_over, (100, 100))
+            window.blit(ponto_gameover, (170, 200))
+            window.blit(texto_gameover1, (72, 300))
+            window.blit(texto_gameover2, (92, 350))
+            pygame.mixer.music.stop()
+
+
+        #desenha as sprites na tela
+        all_sprites.draw(window)
+
+        # Mostra o novo frame para o jogador
+        pygame.display.update()
