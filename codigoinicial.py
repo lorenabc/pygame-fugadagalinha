@@ -100,3 +100,18 @@ class Carro(pygame.sprite.Sprite):
             self.rect.x = WIDTH + 100
         if self.rect.left > WIDTH + 20 and self.direcao == 'contramao':
             self.rect.x = -100
+            
+def game_screen(window):
+    assets = load_assets()
+
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+    FPS = 30
+
+    # Criando um grupo de carros
+    all_sprites = pygame.sprite.Group()
+    all_cars = pygame.sprite.Group()
+
+    # Criando o jogador
+    player = Galinha(assets)
+    all_sprites.add(player)
