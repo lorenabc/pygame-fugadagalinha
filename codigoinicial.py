@@ -182,3 +182,17 @@ def game_screen(window):
         elif state == ACABANDO:
             for i in all_sprites:
                 i.kill()
+        
+        # ----- Gera saídas
+        window.fill((0, 0, 0))
+        window.blit(assets['background'], (0, 0))
+        window.blit(ponto, (310, 4))
+        if state == ACABANDO:
+            now = pygame.time.get_ticks()
+            window.fill((0, 0, 0))
+            window.blit(game_over, (100, 100))
+            window.blit(ponto_gameover, (170, 200))
+            pygame.mixer.music.stop()
+            assets['som_fim'].play()
+            if now - morreu > 5000:
+                state = ACABADO
