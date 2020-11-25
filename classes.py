@@ -36,7 +36,7 @@ class GalinhaInicio(pygame.sprite.Sprite):
         self.som = assets['som_ponto']
 
     def update(self):
-        # Atualização da posição da nave
+        # Atualização da posição da galinha
         self.rect.y += self.speedy
 
         # Mantem dentro da tela
