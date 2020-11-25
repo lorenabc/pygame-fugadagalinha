@@ -132,18 +132,3 @@ def game_screen(window):
         carro = Carro(imagem, posicoes_y[i], direcao)
         all_sprites.add(carro)
         all_cars.add(carro)
-
-    vidas = 3
-    #estados do jogo
-    ACABADO = 0
-    JOGANDO = 1
-    ACABANDO = 2
-    state = JOGANDO
-
-    # ===== Loop principal =====
-    pygame.mixer.music.play(loops=-1)
-    while state != ACABADO:
-        clock.tick(FPS)
-        ponto = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (0, 255, 255))
-        ponto_gameover = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (255, 0, 0))
-        game_over = assets['font_gameover'].render('GAME OVER', True, (255, 0, 0))
