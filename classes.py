@@ -21,7 +21,7 @@ class GalinhaInicio(pygame.sprite.Sprite):
         self.rect.y += self.speedy
         self.y += self.speedy
     
-    class GalinhaPlayer(pygame.sprite.Sprite):
+class GalinhaPlayer(pygame.sprite.Sprite):
     def _init_(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite._init_(self)
