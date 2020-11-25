@@ -19,3 +19,12 @@ def load_assets():
     assets['carro2_mao'] = pygame.transform.scale(carro2_mao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
     assets['carro3_mao'] = pygame.transform.scale(carro3_mao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
     assets['carro4_mao'] = pygame.transform.scale(carro4_mao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
+
+    carro1_contramao = pygame.image.load('assets/carros/carro1_contramao.png').convert_alpha()
+    carro2_contramao = pygame.image.load('assets/carros/carro2_contramao.png').convert_alpha()
+    carro3_contramao = pygame.image.load('assets/carros/carro3_contramao.png').convert_alpha()
+    carro4_contramao = pygame.image.load('assets/carros/carro4_contramao.png').convert_alpha()
+    assets['carro1_contramao'] = pygame.transform.scale(carro1_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
+    assets['carro2_contramao'] = pygame.transform.scale(carro2_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
+    assets['carro3_contramao'] = pygame.transform.scale(carro3_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
+    assets['carro4_contramao'] = pygame.transform.scale(carro4_contramao, (WIDTH_CARRINHO, HEIGHT_CARRINHO))
