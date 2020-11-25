@@ -12,3 +12,18 @@ def transition_screen(window):
     clock = pygame.time.Clock()
     FPS = 30
     game = True
+    while game:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return -1
+
+        window.fill((0, 0, 0))
+        window.blit(frase1, (90, 50))
+        window.blit(frase2, (25, 260))
+        window.blit(frase3, (200, 300))
+
+        pygame.display.update()
+
+        time.sleep(3)
+        return 2
