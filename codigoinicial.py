@@ -132,3 +132,39 @@ def game_screen(window):
         carro = Carro(imagem, posicoes_y[i], direcao)
         all_sprites.add(carro)
         all_cars.add(carro)
+
+    vidas = 3
+    #estados do jogo
+    ACABADO = 0
+    JOGANDO = 1
+    ACABANDO = 2
+    state = JOGANDO
+
+    # ===== Loop principal =====
+    pygame.mixer.music.play(loops=-1)
+    while state != ACABADO:
+        clock.tick(FPS)
+        ponto = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (0, 255, 255))
+        ponto_gameover = assets['font_pontos'].render(f'Pontos: {player.pontos}', True, (255, 0, 0))
+        game_over = assets['font_gameover'].render('GAME OVER', True, (255, 0, 0))
+
+        # ----- Trata eventos
+        for event in pygame.event.get():
+            # ----- Verifica consequências
+            if event.type == pygame.QUIT:
+                state = ACABADO
+            if state == JOGANDO:
+                # Verifica se apertou alguma tecla.
+                if event.type == pygame.KEYDOWN:
+                    # Dependendo da tecla, altera a velocidade.
+                    if event.key == pygame.K_UP:
+                        player.speedy -= 6
+                    if event.key == pygame.K_DOWN:
+                        player.speedy += 6
+                # Verifica se soltou alguma tecla.
+                if event.type == pygame.KEYUP:
+                    # Dependendo da tecla, altera a velocidade.
+                    if event.key == pygame.K_UP:
+                        player.speedy += 6
+                    if event.key == pygame.K_DOWN:
+                        player.speedy -= 6
